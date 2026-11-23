@@ -1,65 +1,125 @@
-# BeatIt for Tang Nano 20K
+<div align="center">
 
-BeatIt is an FPGA music synthesizer and performance instrument for the Sipeed Tang Nano 20K. The Verilog design generates and mixes 48 kHz audio on the FPGA. A companion Android app adds a touch keyboard, MIDI playback and guided practice over Bluetooth Low Energy (BLE).
+# BeatIt · Tang Nano 20K
 
-- Up to 32 voices with two independently tuned and enveloped DDS oscillators per voice, plus a monophonic legato mode.
-- Fixed-point audio, live waveform changes, tone filtering, tremolo, delay and reverb, with I²S output.
-- Physical keys and rotary encoders, optional I²C expression inputs and key LEDs, and a 640 × 480 HDMI display with a live waveform and 32-bin spectrum.
-- USB UART for host control or BLE UART for Android. The app can import local MIDI files and record performances.
+**A real-time FPGA music synthesizer and performance instrument**
+
+[**English**](README.md) · [简体中文](README.zh-CN.md)
+
+![Board](https://img.shields.io/badge/Board-Tang%20Nano%2020K-555555?style=flat-square)
+![RTL](https://img.shields.io/badge/RTL-Verilog-555555?style=flat-square)
+![Audio](https://img.shields.io/badge/Audio-48%20kHz-555555?style=flat-square)
+![Android](https://img.shields.io/badge/Android-8.0%2B-555555?style=flat-square)
+
+</div>
+
+BeatIt is an FPGA-based electronic instrument built for the [Sipeed Tang Nano 20K](https://wiki.sipeed.com/hardware/en/tang/tang-nano-20k/nano-20k.html). Its Verilog audio engine generates, envelopes, processes and mixes samples directly on the FPGA, rather than playing prerecorded tracks. A companion Android app adds a touch keyboard, MIDI playback and guided practice over Bluetooth Low Energy (BLE).
+
+## Features
+
+| Area | Implementation |
+| --- | --- |
+| **Real-time synthesis** | Up to 32 voices; two independently tuned and enveloped DDS oscillators per voice; monophonic legato mode |
+| **Sound processing** | Fixed-point mixing, live waveform changes, tone filtering, tremolo, delay and reverb; I²S audio output |
+| **Instrument controls** | Physical keys and rotary encoders; optional I²C expression inputs and illuminated keys |
+| **Display and connectivity** | Optional 640 × 480 HDMI waveform and 32-bin spectrum; USB UART or BLE UART control; Android MIDI import and performance recording |
+
+The supported features depend on the selected firmware build profile and attached peripherals. The 32-voice configuration is an available build option, not a claim that every hardware configuration has been validated.
+
+## System overview
+
+```mermaid
+flowchart LR
+    IN["Keys / Encoders / I²C / USB or BLE"]
+    CTL["Input handling & voice control"]
+    SYN["DDS oscillators & ADSR envelopes"]
+    MIX["Mixing, filtering & effects"]
+    OUT["I²S → MAX98357A"]
+    VIS["HDMI waveform & spectrum (optional)"]
+    IN --> CTL --> SYN --> MIX --> OUT
+    MIX --> VIS
+```
+
+Audio generation is implemented in FPGA RTL. The Android app exchanges control and status messages with the instrument; it is not an audio-rendering backend.
 
 ## Repository layout
 
-| Path | Contents |
+| Path | Purpose |
 | --- | --- |
-| `rtl/` | Verilog tops, audio, control and video logic, and ROM data |
+| `rtl/` | Verilog top-level, audio, control and video modules; ROM data |
 | `constraints/` | Gowin pin assignments and timing constraints |
-| `scripts/` | FPGA build, programming, serial control, and ROM generation |
-| `sim/` | Verilog testbenches and host-side tests |
-| `android_app/` | Android source, Gradle wrapper, and [UART/BLE protocol](android_app/docs/protocol-v1.md) |
-| `docs/` | Machine-readable DDS note table |
-| `licenses/` | License texts for bundled components |
+| `scripts/` | Build, programming, serial control and ROM-generation utilities |
+| `sim/` | RTL testbenches and host-side tests |
+| `android_app/` | Android application, Gradle wrapper and [UART/BLE protocol](android_app/docs/protocol-v1.en.md) |
+| `docs/` | DDS note table and supporting technical data |
+| `licenses/` | Licenses for separately distributed components |
 
-## Build the FPGA firmware
+## Quick start
 
-Use Python 3.10 or later and Gowin EDA on Windows. Set `GOWIN_HOME` to the directory containing `IDE/bin/gw_sh.exe`. If your temporary path contains non-ASCII characters or is long, set `BEATIT_STAGE_DIR` to a short ASCII directory such as `C:\fpga-temp`.
+### 1. Build the FPGA bitstream
 
-From the repository root, build the USB bench configuration for a board without external controls.
+**Requirements:** Windows, Python 3.10+, and Gowin EDA. Set `GOWIN_HOME` to the installation directory containing `IDE/bin/gw_sh.exe`.
+
+For an initial bench build without external controls:
 
 ```console
 python scripts/build_gowin.py --app --transport usb --voices 4 --performance --no-controls
 ```
 
-The BLE instrument profile enables the external controls, expression inputs, key LEDs and HDMI.
+For the BLE instrument profile with external peripherals and HDMI:
 
 ```console
 python scripts/build_gowin.py --app --transport ble --voices 32 --performance --peripherals --guide --mono --tremolo --delay --reverb --dc-block --hdmi --placement-opt
 ```
 
-Builds produce a bitstream, timing reports and a manifest under `build/`. The board profile expects a 49.152 MHz audio clock. Use the constraints for your transport and peripherals. The BLE profile connects to an external 3.3 V UART module supporting Nordic UART Service or HM-10-style UART at 115200 baud.
+Build outputs, timing reports and the manifest are written under `build/`. The project profile expects a 49.152 MHz audio clock. Choose the constraints that match the transport and attached peripherals.
 
-Install host-side dependencies with `python -m pip install -r requirements.txt`. For SRAM programming, set `GOWIN_PROGRAMMER_HOME` to a Gowin Programmer 1.9.12.04 or later installation. Run `python scripts/program_sram.py --list` to find the cable location. Use the same profile flags as the build with `--location` and `--verify` when programming. The neutral boot profile leaves expression calibration disabled until configured for the board.
+The BLE profile uses an external 3.3 V UART module supporting Nordic UART Service (NUS) or HM-10-style UART at 115200 baud. If Windows temporary paths are long or contain non-ASCII characters, set `BEATIT_STAGE_DIR` to a short ASCII-only path such as `C:\fpga-temp`.
 
-## Simulate
+### 2. Program the board
 
-Install Icarus Verilog and put `iverilog` and `vvp` on `PATH`. From the repository root, run the portable checks.
+Install host-side dependencies:
+
+```console
+python -m pip install -r requirements.txt
+```
+
+For SRAM programming, set `GOWIN_PROGRAMMER_HOME` to a Gowin Programmer 1.9.12.04 or later installation, then locate the cable:
+
+```console
+python scripts/program_sram.py --list
+```
+
+Use the corresponding build-profile flags together with `--location` and `--verify` for programming. Expression calibration is disabled in the neutral boot profile until configured for the board.
+
+### 3. Run simulations and tests
+
+Install Icarus Verilog and put `iverilog` and `vvp` on `PATH`.
 
 ```console
 python scripts/run_tests.py tb_adsr tb_i2c_peripherals tb_performance_bridge tb_hdmi_spectrum tb_video_timing
 python -m unittest sim.test_device_protocol sim.test_guide_protocol sim.test_hdmi_build sim.test_flash_guard
 ```
 
-Running `scripts/run_tests.py` without test names also exercises variants using Gowin's simulation models from `GOWIN_HOME`.
+Running `python scripts/run_tests.py` without test names also exercises configurations using Gowin's simulation models from `GOWIN_HOME`.
 
-## Build the Android app
+### 4. Build the Android app
 
-Install JDK 17 or later and Android SDK 36. Set `JAVA_HOME` and `ANDROID_HOME`, or open `android_app/` in Android Studio. From `android_app/`, run the Gradle wrapper.
+Install JDK 17+ and Android SDK 36. Configure `JAVA_HOME` and `ANDROID_HOME`, or open `android_app/` in Android Studio.
 
 ```console
+cd android_app
 ./gradlew assembleDebug lintDebug
 ```
 
-On Windows, run `.\gradlew.bat assembleDebug lintDebug`. The app supports Android 8.0 and later. Use the BLE FPGA build to play and control the instrument from the app.
+On Windows, run `.\gradlew.bat assembleDebug lintDebug`. The app supports Android 8.0 and later. Use a compatible BLE FPGA build for wireless instrument control.
 
-## License and attribution
+## Documentation and contributing
 
-You may use, modify and distribute the project-owned code under the [BeatIt Project License](LICENSE). Commercial use or reuse of 80% or more of the project-owned code requires credit to the BeatIt project team and a link to this repository. See the [third-party notices](THIRD_PARTY_NOTICES.md) for separately licensed files.
+- [UART / BLE protocol v1](android_app/docs/protocol-v1.en.md) · [简体中文版](android_app/docs/protocol-v1.md)
+- [Contributing guide](CONTRIBUTING.md) · [中文贡献指南](CONTRIBUTING.zh-CN.md)
+- [Third-party notices](THIRD_PARTY_NOTICES.md) · [中文说明](THIRD_PARTY_NOTICES.zh-CN.md)
+
+## License
+
+Project-owned materials are provided under the **[BeatIt Project License](LICENSE)**, which includes attribution requirements for commercial use and substantial reuse. This is a project-specific license, not the MIT license. Separately licensed components are listed in the [third-party notices](THIRD_PARTY_NOTICES.md). Refer to the license files for the governing terms.
