@@ -1,0 +1,198 @@
+{
+  "sample_rate": 48000,
+  "a4_increment": 39370534,
+  "notes": [
+    {
+      "key": 0,
+      "midi": 60,
+      "frequency": 261.6255653005986,
+      "increment": 23409859
+    },
+    {
+      "key": 1,
+      "midi": 62,
+      "frequency": 293.6647679174076,
+      "increment": 26276679
+    },
+    {
+      "key": 2,
+      "midi": 64,
+      "frequency": 329.6275569128699,
+      "increment": 29494575
+    },
+    {
+      "key": 3,
+      "midi": 65,
+      "frequency": 349.2282314330039,
+      "increment": 31248413
+    },
+    {
+      "key": 4,
+      "midi": 67,
+      "frequency": 391.99543598174927,
+      "increment": 35075158
+    },
+    {
+      "key": 5,
+      "midi": 69,
+      "frequency": 440.0,
+      "increment": 39370534
+    },
+    {
+      "key": 6,
+      "midi": 71,
+      "frequency": 493.8833012561241,
+      "increment": 44191930
+    },
+    {
+      "key": 7,
+      "midi": 72,
+      "frequency": 523.2511306011972,
+      "increment": 46819719
+    },
+    {
+      "key": 8,
+      "midi": 36,
+      "frequency": 65.40639132514966,
+      "increment": 5852465
+    },
+    {
+      "key": 9,
+      "midi": 37,
+      "frequency": 69.29565774421802,
+      "increment": 6200470
+    },
+    {
+      "key": 10,
+      "midi": 38,
+      "frequency": 73.41619197935188,
+      "increment": 6569170
+    },
+    {
+      "key": 11,
+      "midi": 39,
+      "frequency": 77.78174593052023,
+      "increment": 6959793
+    },
+    {
+      "key": 12,
+      "midi": 40,
+      "frequency": 82.4068892282175,
+      "increment": 7373644
+    },
+    {
+      "key": 13,
+      "midi": 41,
+      "frequency": 87.30705785825097,
+      "increment": 7812103
+    },
+    {
+      "key": 14,
+      "midi": 42,
+      "frequency": 92.4986056779086,
+      "increment": 8276635
+    },
+    {
+      "key": 15,
+      "midi": 43,
+      "frequency": 97.99885899543733,
+      "increment": 8768789
+    },
+    {
+      "key": 16,
+      "midi": 44,
+      "frequency": 103.82617439498628,
+      "increment": 9290209
+    },
+    {
+      "key": 17,
+      "midi": 45,
+      "frequency": 110.0,
+      "increment": 9842633
+    },
+    {
+      "key": 18,
+      "midi": 46,
+      "frequency": 116.54094037952248,
+      "increment": 10427907
+    },
+    {
+      "key": 19,
+      "midi": 47,
+      "frequency": 123.47082531403103,
+      "increment": 11047982
+    },
+    {
+      "key": 20,
+      "midi": 48,
+      "frequency": 130.8127826502993,
+      "increment": 11704930
+    },
+    {
+      "key": 21,
+      "midi": 49,
+      "frequency": 138.59131548843604,
+      "increment": 12400941
+    },
+    {
+      "key": 22,
+      "midi": 50,
+      "frequency": 146.8323839587038,
+      "increment": 13138339
+    },
+    {
+      "key": 23,
+      "midi": 51,
+      "frequency": 155.56349186104046,
+      "increment": 13919586
+    },
+    {
+      "key": 24,
+      "midi": 52,
+      "frequency": 164.81377845643496,
+      "increment": 14747287
+    },
+    {
+      "key": 25,
+      "midi": 53,
+      "frequency": 174.61411571650194,
+      "increment": 15624207
+    },
+    {
+      "key": 26,
+      "midi": 54,
+      "frequency": 184.9972113558172,
+      "increment": 16553270
+    },
+    {
+      "key": 27,
+      "midi": 55,
+      "frequency": 195.99771799087463,
+      "increment": 17537579
+    },
+    {
+      "key": 28,
+      "midi": 56,
+      "frequency": 207.65234878997256,
+      "increment": 18580418
+    },
+    {
+      "key": 29,
+      "midi": 57,
+      "frequency": 220.0,
+      "increment": 19685267
+    },
+    {
+      "key": 30,
+      "midi": 58,
+      "frequency": 233.08188075904496,
+      "increment": 20855814
+    },
+    {
+      "key": 31,
+      "midi": 59,
+      "frequency": 246.94165062806206,
+      "increment": 22095965
+    }
+  ]
+}

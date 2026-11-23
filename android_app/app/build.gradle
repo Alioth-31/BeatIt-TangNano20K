@@ -1,0 +1,16 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'cn.nano20k.synth'
+    compileSdk 36
+    defaultConfig {
+        applicationId 'cn.nano20k.synth'
+        minSdk 26
+        targetSdk 36
+        versionCode 4
+        versionName '0.3.1'
+        testInstrumentationRunner 'cn.nano20k.synth.SmokeTest'
+    }
+    buildTypes { release { minifyEnabled false } }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    lint { abortOnError true }
+}

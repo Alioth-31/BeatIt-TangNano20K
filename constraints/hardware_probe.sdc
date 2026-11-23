@@ -1,0 +1,8 @@
+create_clock -name sys_clk -period 20.345052 [get_ports {clk_audio}]
+create_clock -name ref_clk -period 37.037037 [get_ports {clk_27m}]
+set_clock_groups -asynchronous -group [get_clocks {sys_clk}] -group [get_clocks {ref_clk}]
+create_generated_clock -name i2s_bclk -source [get_ports {clk_audio}] -divide_by 16 [get_ports {HP_BCK}]
+set_output_delay -clock i2s_bclk -max 10.0 [get_ports {HP_WS HP_DIN}]
+set_output_delay -clock i2s_bclk -min 0.0 [get_ports {HP_WS HP_DIN}]
+set_false_path -from [get_ports {reset_button}]
+set_false_path -to [get_ports {led_n[*] PA_EN uart_tx}]

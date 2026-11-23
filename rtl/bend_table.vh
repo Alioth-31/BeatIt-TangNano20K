@@ -1,0 +1,74 @@
+// Index 0..64 = -2..+2 semitones in 1/16-semitone steps.
+function [16:0] bend_factor;
+    input [6:0] index;
+    begin
+        case (index)
+            7'd0: bend_factor = 17'd58386;
+            7'd1: bend_factor = 17'd58597;
+            7'd2: bend_factor = 17'd58809;
+            7'd3: bend_factor = 17'd59022;
+            7'd4: bend_factor = 17'd59235;
+            7'd5: bend_factor = 17'd59449;
+            7'd6: bend_factor = 17'd59664;
+            7'd7: bend_factor = 17'd59880;
+            7'd8: bend_factor = 17'd60097;
+            7'd9: bend_factor = 17'd60314;
+            7'd10: bend_factor = 17'd60532;
+            7'd11: bend_factor = 17'd60751;
+            7'd12: bend_factor = 17'd60971;
+            7'd13: bend_factor = 17'd61191;
+            7'd14: bend_factor = 17'd61413;
+            7'd15: bend_factor = 17'd61635;
+            7'd16: bend_factor = 17'd61858;
+            7'd17: bend_factor = 17'd62081;
+            7'd18: bend_factor = 17'd62306;
+            7'd19: bend_factor = 17'd62531;
+            7'd20: bend_factor = 17'd62757;
+            7'd21: bend_factor = 17'd62984;
+            7'd22: bend_factor = 17'd63212;
+            7'd23: bend_factor = 17'd63441;
+            7'd24: bend_factor = 17'd63670;
+            7'd25: bend_factor = 17'd63901;
+            7'd26: bend_factor = 17'd64132;
+            7'd27: bend_factor = 17'd64364;
+            7'd28: bend_factor = 17'd64596;
+            7'd29: bend_factor = 17'd64830;
+            7'd30: bend_factor = 17'd65065;
+            7'd31: bend_factor = 17'd65300;
+            7'd32: bend_factor = 17'd65536;
+            7'd33: bend_factor = 17'd65773;
+            7'd34: bend_factor = 17'd66011;
+            7'd35: bend_factor = 17'd66250;
+            7'd36: bend_factor = 17'd66489;
+            7'd37: bend_factor = 17'd66730;
+            7'd38: bend_factor = 17'd66971;
+            7'd39: bend_factor = 17'd67213;
+            7'd40: bend_factor = 17'd67456;
+            7'd41: bend_factor = 17'd67700;
+            7'd42: bend_factor = 17'd67945;
+            7'd43: bend_factor = 17'd68191;
+            7'd44: bend_factor = 17'd68438;
+            7'd45: bend_factor = 17'd68685;
+            7'd46: bend_factor = 17'd68933;
+            7'd47: bend_factor = 17'd69183;
+            7'd48: bend_factor = 17'd69433;
+            7'd49: bend_factor = 17'd69684;
+            7'd50: bend_factor = 17'd69936;
+            7'd51: bend_factor = 17'd70189;
+            7'd52: bend_factor = 17'd70443;
+            7'd53: bend_factor = 17'd70698;
+            7'd54: bend_factor = 17'd70953;
+            7'd55: bend_factor = 17'd71210;
+            7'd56: bend_factor = 17'd71468;
+            7'd57: bend_factor = 17'd71726;
+            7'd58: bend_factor = 17'd71985;
+            7'd59: bend_factor = 17'd72246;
+            7'd60: bend_factor = 17'd72507;
+            7'd61: bend_factor = 17'd72769;
+            7'd62: bend_factor = 17'd73032;
+            7'd63: bend_factor = 17'd73297;
+            7'd64: bend_factor = 17'd73562;
+            default: bend_factor = 17'd65536;
+        endcase
+    end
+endfunction

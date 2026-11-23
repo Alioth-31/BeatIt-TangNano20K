@@ -1,0 +1,34 @@
+# Build outputs, traces and local tool configuration
+build/
+dist/
+impl/
+.gradle/
+.idea/
+.vscode/
+local.properties
+*.log
+*.vvp
+*.vcd
+*.fst
+*.fs
+*.apk
+*.aab
+*.class
+*.py[cod]
+__pycache__/
+.venv/
+
+# Local device profiles and credentials
+calibration*.json
+.env
+.env.*
+*.jks
+*.keystore
+*.key
+*.pem
+*.p12
+*.pfx
+
+.DS_Store
+Thumbs.db
+desktop.ini

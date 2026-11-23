@@ -1,0 +1,80 @@
+// Tang Nano 20K revision 3923, verified against official 2025-08-28 schematic.
+// Selected pins are also identical on 3921.
+IO_LOC "clk_audio" 10;
+// I2C peripheral bus: open drain, external 3.3V pull-ups required.
+IO_LOC "peripheral_sda" 85;
+IO_LOC "peripheral_scl" 80;
+IO_PORT "peripheral_sda" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=4;
+IO_PORT "peripheral_scl" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=4;
+IO_PORT "clk_audio" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
+IO_LOC "reset_button" 87;
+IO_LOC "test_button" 88;
+IO_PORT "reset_button" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
+IO_PORT "test_button" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
+IO_LOC "keys_n[0]" 25;
+IO_LOC "keys_n[1]" 26;
+IO_LOC "keys_n[2]" 27;
+IO_LOC "keys_n[3]" 28;
+IO_LOC "keys_n[4]" 29;
+IO_LOC "keys_n[5]" 30;
+IO_LOC "keys_n[6]" 31;
+IO_LOC "keys_n[7]" 32;
+IO_PORT "keys_n[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "keys_n[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "keys_n[2]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "keys_n[3]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "keys_n[4]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "keys_n[5]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "keys_n[6]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "keys_n[7]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "volume_ab[1]" 41;
+IO_LOC "volume_ab[0]" 42;
+IO_LOC "volume_sw_n" 48;
+IO_LOC "bend_ab[1]" 73;
+IO_LOC "bend_ab[0]" 74;
+IO_LOC "bend_sw_n" 77;
+IO_PORT "volume_ab[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "volume_ab[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "volume_sw_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "bend_ab[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "bend_ab[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_PORT "bend_sw_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "PA_EN" 51;
+IO_LOC "HP_DIN" 54;
+IO_LOC "HP_WS" 55;
+IO_LOC "HP_BCK" 56;
+IO_PORT "PA_EN" IO_TYPE=LVCMOS33 DRIVE=4;
+IO_PORT "HP_DIN" IO_TYPE=LVCMOS33 DRIVE=4;
+IO_PORT "HP_WS" IO_TYPE=LVCMOS33 DRIVE=4;
+IO_PORT "HP_BCK" IO_TYPE=LVCMOS33 DRIVE=4;
+IO_LOC "led_n[0]" 15;
+IO_LOC "led_n[1]" 16;
+IO_LOC "led_n[2]" 17;
+IO_LOC "led_n[3]" 18;
+IO_LOC "led_n[4]" 19;
+IO_LOC "led_n[5]" 20;
+IO_PORT "led_n[0]" IO_TYPE=LVCMOS33 DRIVE=4;
+IO_PORT "led_n[1]" IO_TYPE=LVCMOS33 DRIVE=4;
+IO_PORT "led_n[2]" IO_TYPE=LVCMOS33 DRIVE=4;
+IO_PORT "led_n[3]" IO_TYPE=LVCMOS33 DRIVE=4;
+IO_PORT "led_n[4]" IO_TYPE=LVCMOS33 DRIVE=4;
+IO_PORT "led_n[5]" IO_TYPE=LVCMOS33 DRIVE=4;
+
+// Independent external BLE UART: FPGA RX pin 71, TX pin 72.
+IO_LOC "uart_rx" 71;
+IO_LOC "uart_tx" 72;
+IO_PORT "uart_tx" IO_TYPE=LVCMOS33 DRIVE=4;
+IO_PORT "uart_rx" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+
+// Board HDMI: Sipeed e23949a official constraints, physical revision 3923.
+IO_LOC "clk_video" 4;
+IO_PORT "clk_video" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
+IO_LOC "tmds_clk_p" 33,34;
+IO_PORT "tmds_clk_p" IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=3.3;
+IO_LOC "tmds_data_p[0]" 35,36;
+IO_PORT "tmds_data_p[0]" IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=3.3;
+IO_LOC "tmds_data_p[1]" 37,38;
+IO_PORT "tmds_data_p[1]" IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=3.3;
+IO_LOC "tmds_data_p[2]" 39,40;
+IO_PORT "tmds_data_p[2]" IO_TYPE=LVDS25 PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=3.3;

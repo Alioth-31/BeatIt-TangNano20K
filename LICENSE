@@ -1,0 +1,45 @@
+BeatIt Project License
+
+Copyright 2026 The BeatIt Project Team
+
+1. Permission
+
+The copyright holders grant you a worldwide, royalty-free, non-exclusive
+license to use, copy, modify, and distribute the BeatIt project-owned
+materials in source or compiled form for commercial or noncommercial
+purposes, subject to the conditions below.
+
+2. Attribution
+
+Credit the BeatIt project team and the original project repository when
+either of the following applies.
+
+- You use any of the covered materials for a commercial purpose.
+- Your project reproduces or adapts 80% or more of the covered source code
+  from a BeatIt release.
+
+Measure the 80% threshold against the covered source code in the BeatIt
+release used, excluding comments and blank lines. Count copied and
+substantially equivalent adapted code. Renaming, reformatting, and adding
+unrelated code do not reduce the amount reused.
+
+For distributed work, place the credit in the accompanying repository,
+documentation, or attribution notices. For internal use, put it in the
+project's source or internal documentation. The following wording satisfies
+the credit requirement.
+
+    Includes code from BeatIt-TangNano20K by the BeatIt project team
+    https://github.com/Alioth-31/BeatIt-TangNano20K
+
+When redistributing covered materials, include this license and preserve
+applicable copyright and license notices. Separate licenses apply to the
+components listed in THIRD_PARTY_NOTICES.md. Earlier copies retain their
+applicable license terms.
+
+3. Disclaimer
+
+THE MATERIALS ARE PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE, AND NON-INFRINGEMENT. TO THE EXTENT PERMITTED BY LAW, THE COPYRIGHT
+HOLDERS ARE NOT LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING
+FROM THE MATERIALS OR THEIR USE.
