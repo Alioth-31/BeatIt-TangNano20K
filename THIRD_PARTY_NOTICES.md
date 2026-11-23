@@ -1,5 +1,7 @@
 # Third-party notices
 
+**English** · [简体中文](THIRD_PARTY_NOTICES.zh-CN.md)
+
 | Files | Source and license |
 | --- | --- |
 | `rtl/i2c_master.v` | [verilog-i2c by Alex Forencich](https://github.com/alexforencich/verilog-i2c/tree/a65be4045e898a52e791c6ee71f8f79a7cd2e129), MIT. The source file carries the original notice. |
