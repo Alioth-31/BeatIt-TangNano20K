@@ -1,7 +1,5 @@
 # NanoSynth UART / BLE 协议 v1
 
-**简体中文** · [English](protocol-v1.en.md)
-
 **Android 0.3.1 / FPGA App 桥接接口契约。** 基础合成器顶层不含此接口，需使用 App 桥接构建。Android 实现组帧、BLE 发送、ACK、状态及实体键/实际参数事件接收。
 
 BLE 模块透明转发字节流，FPGA UART 115200 / 8N1（双方一致配置），3.3 V IO，共地。v3923 BLE 配置：模块 TX → PIN71（FPGA RX），模块 RX ← PIN72（FPGA TX）。USB 配置 UART TX69 / RX70 已接板载 BL616，不能并接外部发送端。每份位流仅有一个活动控制通道。BLE 单包按 20 字节分片，不要求特定 MTU；接收端不可把一包通知当一整帧。服务优先 NUS：服务 `6e400001-b5a3-f393-e0a9-e50e24dcca9e`，App 写 `…0002…`，App 订阅 `…0003…`；兼容 HM-10 `FFE0/FFE1`，需支持回传通知。
